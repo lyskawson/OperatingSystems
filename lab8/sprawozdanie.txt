@@ -1,0 +1,36 @@
+Aleksander Łyskawa 275462
+SCR lab 26.11.2024
+
+Zadanie 1
+
+A)
+Wątki nie będą wykonywały się w określonej kolejności. Wynika to z równoczesnego planowania wątków przez system operacyjny. 
+Wynik potwierdza, że kolejność uruchamiania i wykonywania wątków jest różny między kolejnymi uruchomieniami programu.
+
+B)
+Dodanie obliczeń zwiększa czas wykonywania wątków. Kolejność uruchamiania i zakończenia wątków jest nawet 
+bardziej pomieszana niż w programie myhello.c bez obliczeń.	
+
+C)
+W celu naprawienia programu bug5.c należało dodać na końcu funckji main pętle zawierajacą pthread_join, 
+dzięki której program będzie oczekiwał na zakończenie wszystkich wątków.
+
+D)
+Po dodaniu bariery wątki zaczynają obliczenia jednocześnie, a bez bariery kolejność startu obliczeń jest nieokreslona.
+Kolejność zakończenia wątków nadal może być różna, zależnie od czasu wykonywania obliczeń.
+Wynik obliczeń bez bariery był równy 5905.220423, a z barierą 5912.128178.
+
+Zadanie 2 
+
+W programie hello_arg1.c do funkcji wątku PrintHello przekazywany jest wskaźnik do identyfikatora wątku (taskid). 
+Identyfikator ten jest liczony w pętli i przypisywany do tablicy taskids. Komunikaty dla wątków są przechowywane w globalnej tablicy messages, 
+dzięki czemu wątki mogą odczytać komunikat na podstawie swojego identyfikatora.
+  
+W programie hello_arg2.c do funkcji wątku PrintHello przekazywany jest wskaźnik do struktury thread_data, która zawiera identyfikator wątku, 
+wartość obliczoną do tej pory oraz przypisany komunikat.
+Dzięki strukturze możliwe jest przekazanie kilku argumentów w uporządkowany sposob.
+
+Aby naprawić program bug3.c, należy zapewnić, że każdy wątek otrzyma unikalna kopie identyfikatora, poprzez uzycie tablicy na unikalne 
+identyfikatory wątkow.
+   
+

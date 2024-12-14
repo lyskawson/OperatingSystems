@@ -1,0 +1,23 @@
+Aleksander Łyskawa
+SCR lab 26.11, zadanie domowe 
+Zadanie 3
+A)
+Suma pierwszych 10000 liczb pierwszych (N=10000;M=2) wynosi 496165411, 
+co powterdza poprawność działania programu.
+Sum: 496165411
+B)
+Po przeprowadzonych testach swierdzam, że wersja wielowątkowa zawsze daje 
+te same wyniki co wersja jednowątkowa, dzięki poprawnemu użyciu mutexów, 
+którę chronią wartości sprawdz, suma, i znalezione.
+C)
+Przy dodaniu odpowiednich mutexów do ochrony sekcji krytycznych, 
+wersja wielowątkowa zawsze daje te same wyniki co wersja jednowątkowa. 
+Mutexy zapewniają, że wątki nie wchodzą w konflikt przy aktualizacji wspólnych zmiennych.
+
+Wersja wielowątkowa może działać szybciej, szczególnie przy dużych wartościach N. 
+Czas zależy od liczby K. Dla małych N różnice mogą być minimalne, ale dla dużych 
+wartości widać wyraźny wzrost wydajności.
+
+Wersja wielowątkowa może nie działać K razy szybciej niż jednowątkowa, poniewaz
+wątki muszą czekać na dostęp do sekcji krytycznych, co może spowolnić program.
+
