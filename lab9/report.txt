@@ -1,0 +1,37 @@
+zadanie1 
+
+Błąd w programie bug2.c wynika z błędu segmentacji pamięci. Programowi kończy się pamięć, 
+bo każdy z 8 wątków próbuje zalokować duża tablice zmiennych typu double 
+podczas gdy rozmiar stosu wypisany przez program wynosi 8 388 608 bajtów.
+
+Aby naprawić ten problem należało zwiększyć rozmiar stosu. 
+Poprawna implementacja jest w pliku bug2_fixed.c    
+  
+
+zadanie2
+
+a)
+Wątek watch_count czeka, aż zmienna count osiągnie wartość COUNT_LIMIT, 
+podczas gdy wątki inc_count inkrementują zmienną count. Gdy count osiąga COUNT_LIMIT, 
+wątki inc_count wysyłają sygnał do zmiennej warunkowej count_threshold_cv. 
+Wątek watch_count odbiera sygnał i zwiększa zmienną count o 125. 
+Wątki inc_count kontynuują inkrementację zmiennej count, aż osiągną wartość TCOUNT razy.
+    
+b)
+Funkcja pthread_cond_signal() przesyła sygnał tylko do jednego wątku czekającego na zmiennej warunkowej. 
+Ten wątek wykonuje swoją pracę do końca, ale pozostałe wątki wciąż czekają na sygnał, 
+co prowadzi do zawieszenia programu. Aby rozwiązać ten problem, należy użyć funkcji pthread_cond_broadcast(), 
+która przesyła sygnał do wszystkich wątków oczekujących na danej zmiennej.
+    
+c)
+Zeby wątek sub1 nie mogl otrzymywac sygnału kiedy nie czeka na zmienną,
+nalezalo dodac pętle wokół funkcji oczekiwania na zmienną:
+
+while(count < THRESHOLD)
+{
+    pthread_cond_wait(&count_condvar, &count_mutex);
+}
+
+
+
+
